@@ -2,12 +2,41 @@ package br.com.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Conta")
 public class Conta {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id_conta")
+	private Long id;
+
+	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro;
+
+	@Column(name = "data_pagamento")
 	private LocalDate dataPagamento;
+
+	@Column(name = "valor_conta")
 	private Double valorConta;
+
+	@Column(name = "valor_cadastro")
 	private Double valorCadastro;
+
+	@Column(name = "observacao")
 	private String observacao;
+
+//	@ManyToOne(targetEntity = "CategoriaConta" ,cascade = CascadeType.ALL)
+//	private CategoriaConta CategoriaCconta;
 
 	public LocalDate getDataCadastro() {
 		return dataCadastro;
@@ -49,59 +78,22 @@ public class Conta {
 		this.observacao = observacao;
 	}
 
-	@Override
-	public String toString() {
-		return "Conta [dataCadastro=" + dataCadastro + ", dataPagamento=" + dataPagamento + ", valorConta=" + valorConta
-				+ ", valorCadastro=" + valorCadastro + ", observacao=" + observacao + "]";
+	public Long getId() {
+		return id;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
-		result = prime * result + ((dataPagamento == null) ? 0 : dataPagamento.hashCode());
-		result = prime * result + ((observacao == null) ? 0 : observacao.hashCode());
-		result = prime * result + ((valorCadastro == null) ? 0 : valorCadastro.hashCode());
-		result = prime * result + ((valorConta == null) ? 0 : valorConta.hashCode());
-		return result;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Conta other = (Conta) obj;
-		if (dataCadastro == null) {
-			if (other.dataCadastro != null)
-				return false;
-		} else if (!dataCadastro.equals(other.dataCadastro))
-			return false;
-		if (dataPagamento == null) {
-			if (other.dataPagamento != null)
-				return false;
-		} else if (!dataPagamento.equals(other.dataPagamento))
-			return false;
-		if (observacao == null) {
-			if (other.observacao != null)
-				return false;
-		} else if (!observacao.equals(other.observacao))
-			return false;
-		if (valorCadastro == null) {
-			if (other.valorCadastro != null)
-				return false;
-		} else if (!valorCadastro.equals(other.valorCadastro))
-			return false;
-		if (valorConta == null) {
-			if (other.valorConta != null)
-				return false;
-		} else if (!valorConta.equals(other.valorConta))
-			return false;
-		return true;
-	}
+//	public CategoriaConta getCategoriaCconta() {
+//		return CategoriaCconta;
+//	}
+//
+//	public void setCategoriaCconta(CategoriaConta categoriaCconta) {
+//		CategoriaCconta = categoriaCconta;
+//	}
+
+	
 
 }

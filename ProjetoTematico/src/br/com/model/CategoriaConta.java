@@ -1,11 +1,38 @@
 package br.com.model;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "CategoriaConta")
 public class CategoriaConta {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_categoria_conta")
+	private Long id;
+
+	@Column(name = "nome")
 	private String nome;
-	private ArrayList<Conta> contas = new ArrayList<Conta>();
+
+//	@OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+//	private ArrayList<Conta> contas;
+//
+//	public CategoriaConta() {
+//		contas = new ArrayList<Conta>();
+//	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -15,25 +42,19 @@ public class CategoriaConta {
 		this.nome = nome;
 	}
 
-	public ArrayList<Conta> getContas() {
-		return contas;
-	}
-
-	public void setContas(ArrayList<Conta> contas) {
-		this.contas = contas;
-	}
-
-	@Override
-	public String toString() {
-		return "CategoriaConta [nome=" + nome + ", contas=" + contas + "]";
-	}
+//	public ArrayList<Conta> getContas() {
+//		return contas;
+//	}
+//
+//	public void setContas(ArrayList<Conta> contas) {
+//		this.contas = contas;
+//	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((contas == null) ? 0 : contas.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -46,15 +67,10 @@ public class CategoriaConta {
 		if (getClass() != obj.getClass())
 			return false;
 		CategoriaConta other = (CategoriaConta) obj;
-		if (contas == null) {
-			if (other.contas != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!contas.equals(other.contas))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
