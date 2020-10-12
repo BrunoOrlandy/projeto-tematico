@@ -17,7 +17,7 @@ public class Aquisicao {
 	@Column(name = "id_aquisicao")
 	private Long Id;
 
-	@Column(name = "aquisicao")
+	@Column(name = "aquisicao", nullable = false)
 	private String aquisicao;
 
 	@Column(name = "valor")

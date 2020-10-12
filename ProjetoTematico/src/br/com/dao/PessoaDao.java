@@ -9,7 +9,7 @@ public class PessoaDao extends GenericDao<Pessoa> {
 	}
 
 	public Pessoa buscaLogin(Pessoa pessoa) {
-		return findByUser(pessoa.getNome(), pessoa.getSenha());
+		return findByLogin(pessoa.getLogin(), pessoa.getSenha());
 	}
 
 }

@@ -4,9 +4,11 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,8 +21,10 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import br.com.controller.PessoaController;
 import br.com.dao.PessoaDao;
 import br.com.model.Pessoa;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
-public class FrameLogar extends JDialog {
+public class FrameLogar extends JFrame {
 	/**
 	 * 
 	 */
@@ -34,35 +38,37 @@ public class FrameLogar extends JDialog {
 	private JButton btnCadastrar;
 	private JButton btnCancelar;
 
-	private JTextField txtNome;
+	private JTextField tfLogin;
 	private JPasswordField tpSenha;
 
 	private MonneyControlledFrame framePrincipal;
+	private MonneyControlledMenuFrame menuFrame = new MonneyControlledMenuFrame(framePrincipal);
 
-	private FrameLogar frameLogar;
 	private PessoaController pessoacontroller = new PessoaController();
+	private JLabel lblNewLabel;
 
-	public FrameLogar(MonneyControlledFrame framePrincipal) {
+	public FrameLogar(MonneyControlledFrame framePrincipal) throws ParseException {
 		this.framePrincipal = framePrincipal;
-		setModal(true);
 		setTitle("Logar ");
 		getContentPane().add(tela);
 
 		inicializaComponentes();
-		this.setSize(223, 184);
+
+		this.setSize(223, 226);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.setFocusableWindowState(true);
 	}
 
 	private void inicializaComponentes() {
 		tela.setLayout(null);
 
 		Panel panel_1 = new Panel();
-		panel_1.setBounds(10, 5, 200, 113);
+		panel_1.setBounds(10, 41, 200, 113);
 		tela.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Nome: *");
+		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Login: *");
 		lblNewJgoodiesLabel.setBounds(10, 11, 92, 14);
 		panel_1.add(lblNewJgoodiesLabel);
 
@@ -74,12 +80,12 @@ public class FrameLogar extends JDialog {
 		lblNewJgoodiesLabel_1.setBounds(10, 59, 92, 14);
 		panel_1.add(lblNewJgoodiesLabel_1);
 
-		txtNome = new JTextField();
-		txtNome.setBounds(10, 25, 155, 22);
-		panel_1.add(txtNome);
+		tfLogin = new JTextField();
+		tfLogin.setBounds(10, 25, 155, 22);
+		panel_1.add(tfLogin);
 
 		Panel panel_2 = new Panel();
-		panel_2.setBounds(10, 123, 200, 27);
+		panel_2.setBounds(10, 160, 200, 27);
 		tela.add(panel_2);
 		panel_2.setLayout(null);
 
@@ -87,7 +93,6 @@ public class FrameLogar extends JDialog {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetForm();
-				// frameLogar.setVisible(false);
 				dispose();
 			}
 		});
@@ -98,23 +103,32 @@ public class FrameLogar extends JDialog {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (pessoacontroller.validarLogin(txtNome.getText(), tpSenha.getText())) {
-					JOptionPane.showMessageDialog(null, "Bem vindo :" + txtNome.getText());
+				if (pessoacontroller.validarLogin(tfLogin.getText(), tpSenha.getText())) {
+					JOptionPane.showMessageDialog(null, "Bem vindo : " + tfLogin.getText());
 				} else {
-					JOptionPane.showMessageDialog(null, "Nome ou senha incorreto");
+					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
 				}
 				resetForm();
 				dispose();
+				menuFrame.setVisible(true);
+				framePrincipal.dispose();
+
 			}
 		});
 
 		btnCancelar.setBounds(111, 0, 89, 23);
 		panel_2.add(btnCancelar);
 
+		lblNewLabel = new JLabel("Login");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(10, 11, 200, 24);
+		tela.add(lblNewLabel);
+
 	}
 
 	public void resetForm() {
-		this.txtNome.setText(null);
+		this.tfLogin.setText(null);
 		this.tpSenha.setText(null);
 	}
 

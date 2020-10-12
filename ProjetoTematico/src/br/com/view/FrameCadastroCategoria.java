@@ -1,15 +1,15 @@
 package br.com.view;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FrameCadastroCategoria extends JFrame {
 	/**
@@ -23,10 +23,16 @@ public class FrameCadastroCategoria extends JFrame {
 
 	public FrameCadastroCategoria() {
 
-		this.setSize(450, 300);
+		this.setSize(450, 341);
 
 		inicializaComponentes();
 		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("Cadastro de Categorias");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(10, 11, 414, 30);
+		getContentPane().add(lblNewLabel_2);
 	}
 
 	public void inicializaComponentes() {
@@ -41,17 +47,17 @@ public class FrameCadastroCategoria extends JFrame {
 		table.setLocation(10, 104);
 		table.setToolTipText("Tabela");
 
-		panel.setBounds(10, 11, 414, 239);
+		panel.setBounds(10, 52, 414, 239);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(10, 41, 187, 20);
+		textField.setBounds(10, 48, 187, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Categoria: * ");
-		lblNewLabel.setBounds(10, 16, 107, 14);
+		lblNewLabel.setBounds(10, 34, 107, 14);
 		panel.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Cancelar");
@@ -63,7 +69,7 @@ public class FrameCadastroCategoria extends JFrame {
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel_1 = new JLabel("Categorias");
-		lblNewLabel_1.setBounds(10, 75, 89, 14);
+		lblNewLabel_1.setBounds(10, 79, 89, 14);
 		panel.add(lblNewLabel_1);
 
 		Object[] colunas = new Object[] { "id", "Nome", "Teste" };

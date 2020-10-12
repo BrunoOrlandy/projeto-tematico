@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FrameTelaDeAquisicoes extends JFrame {
 	private JTextField textField;
@@ -19,13 +21,13 @@ public class FrameTelaDeAquisicoes extends JFrame {
 		getContentPane().setLayout(null);
 
 		inicializarComponentes();
-		setSize(256, 303);
+		setSize(262, 332);
 
 	}
 
 	public void inicializarComponentes() {
 
-		panel.setBounds(10, 11, 227, 239);
+		panel.setBounds(10, 43, 227, 239);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -81,6 +83,12 @@ public class FrameTelaDeAquisicoes extends JFrame {
 		btnNewButton_1.setToolTipText("Salvar");
 		btnNewButton_1.setBounds(119, 205, 89, 23);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_5 = new JLabel("Aquisi\u00E7\u00F5es");
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_5.setBounds(10, 11, 227, 27);
+		getContentPane().add(lblNewLabel_5);
 
 	}
 }

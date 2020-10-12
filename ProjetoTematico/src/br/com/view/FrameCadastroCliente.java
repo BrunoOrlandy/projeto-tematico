@@ -8,6 +8,8 @@ import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FrameCadastroCliente extends JFrame {
 	private JTextField textField;
@@ -22,14 +24,14 @@ public class FrameCadastroCliente extends JFrame {
 
 		inicializaComponentes();
 
-		this.setSize(450, 366);
+		this.setSize(450, 397);
 		this.getDefaultCloseOperation();
 	}
 
 	public void inicializaComponentes() {
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 414, 305);
+		panel.setBounds(10, 53, 414, 305);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -95,5 +97,11 @@ public class FrameCadastroCliente extends JFrame {
 		JButton btnNewButton_1 = new JButton("Salvar");
 		btnNewButton_1.setBounds(120, 279, 89, 23);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_6 = new JLabel("Cadastro de Contas");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_6.setBounds(10, 11, 414, 31);
+		getContentPane().add(lblNewLabel_6);
 	}
 }

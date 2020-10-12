@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FrameRegistroDeMovimentacoes extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -20,13 +22,19 @@ public class FrameRegistroDeMovimentacoes extends JFrame {
 		setTitle("Registro de Movimentações");
 		inicializarComponentes();
 		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Registro de Movimenta\u00E7\u00F5es");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(10, 11, 663, 26);
+		getContentPane().add(lblNewLabel);
 
-		setSize(700, 282);
+		setSize(700, 311);
 	}
 
 	public void inicializarComponentes() {
 
-		panel.setBounds(10, 21, 663, 213);
+		panel.setBounds(10, 48, 663, 213);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 

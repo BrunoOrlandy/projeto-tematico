@@ -3,6 +3,7 @@ package br.com.view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 
 import javax.swing.JButton;
@@ -39,10 +40,21 @@ public class MonneyControlledFrame extends JFrame {
 		this.setSize(450, 288);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setVisible(true);
 
-		// inicializaPostgres();
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+					int selectedOption = JOptionPane.showConfirmDialog(null, "Deseja Sair Realmente?",
+							"Sistema informa:", JOptionPane.YES_NO_OPTION);
+					if (selectedOption == JOptionPane.YES_OPTION) {
+
+						System.exit(0);
+					}
+				}
+			}
+		});
 
 	}
 
@@ -93,35 +105,13 @@ public class MonneyControlledFrame extends JFrame {
 
 	private class CadastrarUsuarioListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			frameCadastarPessoa.setVisible(true);
-//			if (pessoaImplDAO.findById()) {
-//				frameCadastarPessoa.setVisible(true);
-//				dispose();
-//			}
 		}
 	}
 
 	private class Logar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			frameLogar.setVisible(true);
-
 		}
 	}
-
-//	public void inicializaPostgres() {
-//		try {
-//			ConnectioMenagerPostgre cmp = new ConnectioMenagerPostgre();
-//			cmp.abreConexao();
-//			cmp.criaDataBase();
-//			cmp.close();
-//
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(this,
-//					"Não foi possível inicializar o Banco de dados: " + e.getMessage()
-//							+ "\nVerifique a dependência do driver ou configurações do banco!",
-//					"Erro", JOptionPane.ERROR_MESSAGE);
-//			System.exit(0);
-//		}
-//	}
 }

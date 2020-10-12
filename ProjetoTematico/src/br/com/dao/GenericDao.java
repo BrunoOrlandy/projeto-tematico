@@ -54,7 +54,9 @@ public class GenericDao<T> {
 		try {
 
 			transaction.begin();
+
 			getEntityManager().remove(entity);
+
 			transaction.commit();
 
 		} catch (Exception e) {
@@ -93,6 +95,17 @@ public class GenericDao<T> {
 		TypedQuery<Pessoa> q = getEntityManager()
 				.createQuery("SELECT p FROM Pessoa p WHERE p.nome = ?1 AND p.senha = ?2", Pessoa.class);
 		q.setParameter(1, nome);
+		q.setParameter(2, senha);
+
+		return q.getSingleResult();
+
+	}
+
+	public Pessoa findByLogin(String login, String senha) {
+
+		TypedQuery<Pessoa> q = getEntityManager()
+				.createQuery("SELECT p FROM Pessoa p WHERE p.login = ?1 AND p.senha = ?2", Pessoa.class);
+		q.setParameter(1, login);
 		q.setParameter(2, senha);
 
 		return q.getSingleResult();

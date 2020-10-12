@@ -1,10 +1,6 @@
 package br.com.controller;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -13,39 +9,18 @@ import br.com.model.Pessoa;
 
 public class PessoaController {
 
-	private Date formatData(String data) throws ParseException {
-		DateFormat format = new SimpleDateFormat("dd/mm");
-		return new Date(format.parse(data).getTime());
-	}
-
-	public void salvar(String nome, String sobrenome, String senha, String dataNascimento, String sexo)
-			throws SQLException {
-		Pessoa pessoa = new Pessoa();
-
-		try {
-
-			pessoa.setNome(nome);
-			pessoa.setSobrenome(sobrenome);
-			pessoa.setSenha(senha);
-			pessoa.setSexo(sexo);
-			pessoa.setDataNascimento(formatData(dataNascimento));
-
-		} catch (ParseException e) {
-
-			e.printStackTrace();
-
-		}
+	public void salvar(Pessoa pessoa) throws SQLException {
 
 		new PessoaDao().salvar(pessoa);
-		// System.out.println(pessoa.toString());
+
 		JOptionPane.showMessageDialog(null, "Cadastro Realizado");
 
 	}
 
-	public boolean validarLogin(String nome, String senha) {
+	public boolean validarLogin(String login, String senha) {
 
 		Pessoa pessoa = new Pessoa();
-		pessoa.setNome(nome);
+		pessoa.setLogin(login);
 		pessoa.setSenha(senha);
 		PessoaDao pdao = new PessoaDao();
 

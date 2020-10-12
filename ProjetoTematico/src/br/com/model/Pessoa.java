@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 
 @Entity
 @Table(name = "Pessoa")
@@ -18,19 +19,22 @@ public class Pessoa {
 	@Column(name = "Id_pessoa")
 	private Long id;
 
-	@Column(name = "nome")
+	@Column(name = "login", length = 50)
+	private String login;
+
+	@Column(name = "nome", length = 50)
 	private String nome;
 
-	@Column(name = "sobrenome")
+	@Column(name = "sobrenome", length = 50)
 	private String sobrenome;
 
-	@Column(name = "sexo")
+	@Column(name = "sexo", length = 1)
 	private String sexo;
 
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
-	@Column(name = "senha")
+	@Column(name = "senha", length = 15)
 	private String senha;
 
 	public Long getId() {
@@ -39,6 +43,14 @@ public class Pessoa {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getNome() {
@@ -79,6 +91,10 @@ public class Pessoa {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getUsuarioLogado(String nome) {
+		return nome;
 	}
 
 	@Override

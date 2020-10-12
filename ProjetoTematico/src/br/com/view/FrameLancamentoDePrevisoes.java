@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FrameLancamentoDePrevisoes extends JFrame {
 	/**
@@ -20,14 +22,14 @@ public class FrameLancamentoDePrevisoes extends JFrame {
 
 		getContentPane().setLayout(null);
 		inicializarComponentes();
-		setSize(337, 301);
+		setSize(337, 359);
 
 	}
 
 	public void inicializarComponentes() {
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 299, 239);
+		panel.setBounds(10, 70, 299, 239);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -72,6 +74,12 @@ public class FrameLancamentoDePrevisoes extends JFrame {
 		JButton btnNewButton_1 = new JButton("Salvar");
 		btnNewButton_1.setBounds(109, 205, 89, 23);
 		panel.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("Lan\u00E7amento de Previs\u00F5es");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_4.setBounds(10, 11, 299, 48);
+		getContentPane().add(lblNewLabel_4);
 
 	}
 }
