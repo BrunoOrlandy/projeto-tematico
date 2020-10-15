@@ -25,6 +25,7 @@ import javax.swing.text.MaskFormatter;
 import br.com.app.utils.TeclasPermitidas;
 import br.com.controller.PessoaController;
 import br.com.model.Pessoa;
+import br.com.model.UsuarioLogado;
 
 public class FrameCadastrarPessoa extends JFrame {
 	/**
@@ -49,7 +50,6 @@ public class FrameCadastrarPessoa extends JFrame {
 
 	private MonneyControlledFrame framePrincipal;
 	private MonneyControlledMenuFrame menuFrame = new MonneyControlledMenuFrame(framePrincipal);
-
 	private PessoaController pessoacontroller = new PessoaController();
 
 	public FrameCadastrarPessoa(MonneyControlledFrame framePrincipal) throws ParseException {
@@ -58,7 +58,14 @@ public class FrameCadastrarPessoa extends JFrame {
 
 		getContentPane().add(telaCadastro);
 
-		iniciarlizarComponentes();
+		if (UsuarioLogado.UsuarioLogado() == null) {
+			iniciarlizarComponentes();
+		} else {
+			Pessoa pessoa = new Pessoa();
+			pessoa = carregarUsuarioLogado(UsuarioLogado.UsuarioLogado().user);
+			iniciarlizarComponentes();
+			preencheCamposComUsuarioLogado(pessoa);
+		}
 
 	}
 
@@ -314,4 +321,29 @@ public class FrameCadastrarPessoa extends JFrame {
 		}
 		return true;
 	}
+
+	public Pessoa carregarUsuarioLogado(String string) {
+		return pessoacontroller.buscarUsuario(string);
+
+	}
+
+	private void preencheCamposComUsuarioLogado(Pessoa pessoa) {
+		tfNome.setText(pessoa.getNome());
+		tfSobrenome.setText(pessoa.getSobrenome());
+		tfDataNascimento.setText(pessoa.getDataNascimento().toString());
+		if (pessoa.getSexo() != null) {
+			if (pessoa.getSexo() == "M") {
+				radioBtnSexoM.setSelected(true);
+			} else {
+				radioBtnSexoM.setSelected(true);
+			}
+		}
+		tpSenha = new JPasswordField();
+		tpSenha.setBounds(29, 188, 365, 20);
+		tpConfirmarSenha = new JPasswordField();
+		tpConfirmarSenha.setBounds(29, 232, 365, 20);
+		tfLogin = new JTextField();
+		tfLogin.setBounds(29, 146, 131, 20);
+	}
+
 }

@@ -21,6 +21,8 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import br.com.controller.PessoaController;
 import br.com.dao.PessoaDao;
 import br.com.model.Pessoa;
+import br.com.model.UsuarioLogado;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -34,6 +36,7 @@ public class FrameLogar extends JFrame {
 	private JPanel tela = new JPanel();
 
 	private Pessoa pessoa = new Pessoa();
+	private UsuarioLogado usuariologado = UsuarioLogado.UsuarioLogado();
 
 	private JButton btnCadastrar;
 	private JButton btnCancelar;
@@ -105,6 +108,8 @@ public class FrameLogar extends JFrame {
 
 				if (pessoacontroller.validarLogin(tfLogin.getText(), tpSenha.getText())) {
 					JOptionPane.showMessageDialog(null, "Bem vindo : " + tfLogin.getText());
+					usuariologado.user = tfLogin.getText();
+					System.err.println(usuariologado.user);
 				} else {
 					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
 				}

@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import br.com.dao.PessoaDao;
 import br.com.model.Pessoa;
+import br.com.model.UsuarioLogado;
 
 public class PessoaController {
 
@@ -37,6 +38,15 @@ public class PessoaController {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public Pessoa buscarUsuario(String usuarioLogado) {
+		Pessoa pessoa = new Pessoa();
+		PessoaDao pessoaDao = new PessoaDao();
+
+		pessoa = (Pessoa) pessoaDao.findByName(usuarioLogado);
+		return pessoa;
+
 	}
 
 }

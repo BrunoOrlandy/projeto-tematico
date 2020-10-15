@@ -1,6 +1,7 @@
 package br.com.view;
 
-import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
 
@@ -8,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import br.com.model.UsuarioLogado;
 
 public class MonneyControlledMenuFrame extends JFrame {
 
@@ -19,6 +20,7 @@ public class MonneyControlledMenuFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private MonneyControlledFrame framePrincipal;
 	private FrameCadastrarPessoa frameCadastrarPessoa;
+	private UsuarioLogado usuarioLogado;
 
 	public MonneyControlledMenuFrame(MonneyControlledFrame framePrincipal) throws ParseException {
 		this.framePrincipal = framePrincipal;
